@@ -22,15 +22,38 @@ public:
     }
     ListNode* middleNode(ListNode* head) 
     {
-        int len=length(head);
-        int ans=len/2;
-        int count=0;
-        ListNode* temp=head;
-        while(count<ans)
+        if(head==NULL || head->next==NULL)
         {
-            temp=temp->next;
-            count++;
+            return head;
         }
-        return temp;
+        if(head->next->next==NULL)
+        {
+            return head->next;
+        }
+        ListNode* slow=head;
+        ListNode* fast=head->next;
+        while(fast!=NULL)
+        {
+            fast=fast->next;
+            if(fast!=NULL)
+            {
+                fast=fast->next;
+            }
+            slow=slow->next;
+        }
+        return slow;
+
+
+
+        // int len=length(head);
+        // int ans=len/2;
+        // int count=0;
+        // ListNode* temp=head;
+        // while(count<ans)
+        // {
+        //     temp=temp->next;
+        //     count++;
+        // }
+        // return temp;
     }
 };
